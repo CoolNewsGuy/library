@@ -24,8 +24,9 @@ body {
     padding-bottom: 30px;
     display: grid;
     row-gap: 30px;
-    justify-items: center;
-    grid-template-columns: repeat(3, 1fr);
+    column-gap: 10px;
+    justify-content: space-around;
+    grid-template: repeat(auto-fit, 400px) / repeat(auto-fit, 400px);
     background: rgb(255, 160, 160);
 }
 
