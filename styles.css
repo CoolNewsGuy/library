@@ -11,7 +11,7 @@ body {
 body {
     min-height: 2000px;
     position: relative;
-    background: rgb(160, 236, 145);
+    background: rgb(145, 215, 236);
 }
 
 .library {
@@ -29,7 +29,8 @@ body {
     column-gap: 20px;
     justify-content: space-around;
     grid-template: repeat(auto-fit, 400px) / repeat(auto-fill, 300px);
-    background: rgb(173, 232, 248);
+    background: rgb(160, 236, 145);
+    visibility: hidden;
     margin-top: 20vh;
 }
 
@@ -71,4 +72,13 @@ body {
     font-size: 1rem;
     text-align: center;
     color: #fff;
+}
+form {
+    background: #fff;
+    min-height: 800px;
+    width: 30%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
