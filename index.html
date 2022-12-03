@@ -13,6 +13,56 @@
 <body>
   <form action="">
     <h1 class="title">New Book</h1>
+    <div class="details-container">
+      <label for="book-name">
+        Name of the book:
+        <input type="text" id="book-name">
+      </label>
+
+      <label for="book-author">
+        Author of the book:
+        <input type="text" id="book-author">
+      </label>
+
+      <label for="book-description">
+        Description of the book:
+        <textarea name="book-description" id="book-description" cols="30" rows="10"></textarea>
+      </label>
+
+      <label for="book-image">
+        Book image:
+        <input type="file" id="book-image">
+      </label>
+
+      <div class="is-book-read">
+        <span>
+          Have you read the book?
+        </span>
+        <label for="read">
+          <input type="radio" name="read" id="read">
+          Yes
+        </label>
+        <label for="not-read">
+          <input type="radio" name="read" id="not-read">
+          No
+        </label>
+      </div>
+
+      <div class="is-book-favorite">
+        <span>Would you like this book to be in your "favorite books" list?</span>
+        <label for="favorite">
+          <input type="radio" name="favorite" id="favorite">
+          Yes
+        </label>
+        <label for="not-favorite">
+          <input type="radio" name="read" id="not-favorite">
+          No
+        </label>
+      </div>
+
+      <button type="submit">Add the book</button>
+
+    </div>
   </form>
   <div class="library">
     <div class="book sample-book">
