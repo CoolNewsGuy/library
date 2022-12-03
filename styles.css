@@ -36,20 +36,28 @@ body {
 .book {
     width: 300px;
     height: 400px;
-    background: rebeccapurple;
+    background: rgb(246, 248, 149);
     transition: 0.2s;
     box-shadow: 0 0 10px 2px #0002;
+    cursor: pointer;
 }
 
 .book:hover {
     scale: 1.1;
 }
 
-.book:first-child {
+.sample-book {
     background: url(sample.jpg);
     background-position: center;
     background-size: cover;
     position: relative;
+}
+
+.add-book {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 6rem;
 }
 
 .text {
