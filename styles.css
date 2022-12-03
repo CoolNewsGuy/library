@@ -11,7 +11,7 @@ body {
 body {
     min-height: 2000px;
     position: relative;
-    background: rgb(145, 215, 236);
+    background: linear-gradient(#0002, #0002), rgb(145, 215, 236);
 }
 
 .library {
@@ -73,12 +73,19 @@ body {
     text-align: center;
     color: #fff;
 }
+
+/* TODO form */
 form {
     background: #fff;
+    border-radius: 5px;
     min-height: 800px;
-    width: 30%;
-    position: absolute;
+    width: max(25vw, 400px);
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.title {
+    text-align: center;
 }
