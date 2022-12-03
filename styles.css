@@ -16,9 +16,8 @@ body {
 
 .library {
     position: relative;
-    top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     width: 80%;
     min-height: 800px;
     border-radius: 10px;
@@ -31,6 +30,7 @@ body {
     justify-content: space-around;
     grid-template: repeat(auto-fit, 400px) / repeat(auto-fill, 300px);
     background: rgb(173, 232, 248);
+    margin-top: 20vh;
 }
 
 .book {
