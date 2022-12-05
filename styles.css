@@ -21,7 +21,7 @@ body {
 
 body::before {
     content: "";
-    background: linear-gradient(#0002, #0002);
+    background: var(--black-transparent-background);
     position: absolute;
     height: 100%;
     width: 100%;
@@ -41,9 +41,7 @@ body::before {
     justify-content: space-around;
     grid-template: repeat(auto-fit, 400px) / repeat(auto-fill, 300px);
     background: rgb(160, 236, 145);
-    /* visibility: hidden; */
     margin-top: 20vh;
-    z-index: -1;
 }
 
 .book {
@@ -95,6 +93,7 @@ form {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    display: none;
 }
 
 .title {
@@ -165,6 +164,8 @@ button[type="submit"]:hover {
     right: 20px;
     top: 10px;
     cursor: pointer;
+    display: none;
+    user-select: none;
 }
 
 .close-form-btn::before {
