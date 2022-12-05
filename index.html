@@ -14,51 +14,53 @@
   <form action="">
     <h1 class="title">New Book</h1>
     <div class="details-container">
-      <label for="book-name">
-        Name of the book:
-        <input type="text" id="book-name">
-      </label>
-
-      <label for="book-author">
-        Author of the book:
-        <input type="text" id="book-author">
-      </label>
-
-      <label for="book-description">
-        Description of the book:
-        <textarea name="book-description" id="book-description" cols="30" rows="10"></textarea>
-      </label>
-
-      <label for="book-image">
-        Book image:
-        <input type="file" id="book-image">
-      </label>
-
-      <div class="is-book-read">
-        <span>
-          Have you read the book?
-        </span>
-        <label for="read">
-          <input type="radio" name="read" id="read">
-          Yes
+      <fieldset class="general-info">
+        <legend>General Information</legend>
+        <label for="book-name">
+          Name of the book:
         </label>
-        <label for="not-read">
+        <input type="text" id="book-name" required>
+        <label for="book-author">
+          Author of the book:
+        </label>
+        <input type="text" id="book-author" required>
+        <label for="book-description">
+          Description of the book:
+        </label>
+        <textarea required name="book-description" id="book-description" cols="30" rows="10"></textarea>
+      </fieldset>
+
+      <fieldset class="additional-info">
+        <legend>Additional Information</legend>
+        <label for="book-image">
+          Book image:
+        </label>
+        <button id="add-image-btn">Upload an image</button>
+        <input type="file" name="book-image" accept="image/*" id="book-image" required>
+
+        <div class="is-book-read">
+          <span>
+            Have you read the book?
+          </span>
+          <input type="radio" name="read" id="read" required>
+          <label for="read">Yes</label>
+
           <input type="radio" name="read" id="not-read">
-          No
-        </label>
-      </div>
+          <label for="not-read">No</label>
+        </div>
 
-      <div class="is-book-favorite">
-        <span>Would you like this book to be in your "favorite books" list?</span>
-        <label for="favorite">
-          <input type="radio" name="favorite" id="favorite">
-          Yes
-        </label>
-        <label for="not-favorite">
-          <input type="radio" name="read" id="not-favorite">
-          No
-        </label>
-      </div>
+        <div class="is-book-favorite">
+          <span>Would you like this book to be in your "favorite books" list?</span>
+          <input type="radio" name="favorite" id="favorite" required>
+          <label for="favorite">Yes</label>
+
+          <input type="radio" name="favorite" id="not-favorite">
+          <label for="not-favorite">No</label>
+        </div>
+
+        <label for="pages">Number of pages:</label>
+        <input type="number" name="" min="1" max="3000" id="">
+      </fieldset>
 
       <button type="submit">Add the book</button>
 
@@ -72,6 +74,8 @@
     </div>
     <div class="book add-book" title="Add a book">+</div>
   </div>
+
+  <script src="script.js"></script>
 </body>
 
 </html>
