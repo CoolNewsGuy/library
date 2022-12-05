@@ -117,7 +117,7 @@ input[type="file"] {
     display: none;
 }
 
-button,
+form button,
 button[type="submit"] button {
     border: none;
     width: 100%;
@@ -141,4 +141,33 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
     background: rgb(86, 255, 89);
+}
+
+.close-form-btn {
+    font-size: 2rem;
+    color: #fff;
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    position: fixed;
+    right: 20px;
+    top: 10px;
+    cursor: pointer;
+}
+
+.close-form-btn::before {
+    content: "";
+    z-index: -1;
+    border-radius: 50%;
+    background: #0007;
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.close-form-btn:hover::before {
+    background: #0009;
 }
