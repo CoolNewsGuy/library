@@ -5,6 +5,16 @@ let libray = document.querySelector(".library"),
     addImageBtn = document.getElementById("add-image-btn"),
     closeBtn = document.querySelector(".close-form-btn");
 
+function Book(name, author, pages, isRead, image, isFavorite, description) {
+    this.name = name;
+    this.author = author;
+    this.pages = pages;
+    this.isRead = isRead;
+    this.image = image;
+    this.isFavorite = isFavorite;
+    this.description = description;
+}
+
 function closeForm() {
     closeBtn.style.display = "none";
     form.style.display = "none";
