@@ -96,6 +96,19 @@ form {
     display: none;
 }
 
+.scaling-form {
+    animation: scale-form 0.5s;
+}
+
+@keyframes scale-form {
+    from {
+        scale: 0;
+    }
+    to {
+        scale: 1;
+    }
+}
+
 .title {
     text-align: center;
     margin-top: 10px;
