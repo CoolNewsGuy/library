@@ -77,11 +77,34 @@ body::before {
     bottom: 0;
     height: 50px;
     background: #000a;
-    display: grid;
-    place-content: center;
     font-size: 1rem;
     text-align: center;
     color: #fff;
+    transition: 0.5s;
+    overflow: hidden;
+}
+
+.text:hover {
+    height: 100%;
+}
+
+.title {
+    margin-bottom: 0;
+    margin-top: 5px;
+}
+
+.author {
+    color: rgb(199, 199, 199);
+}
+
+.pages {
+    margin-bottom: 50px;
+}
+
+.description {
+    margin: auto;
+    width: 85%;
+    text-align: left;
 }
 
 /* TODO form */
@@ -109,7 +132,7 @@ form {
     }
 }
 
-.title {
+.form-title {
     text-align: center;
     margin-top: 10px;
     margin-bottom: 10px;
