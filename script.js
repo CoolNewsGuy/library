@@ -61,6 +61,7 @@ function addBookToLibrary(e) {
 
     books.push(newBook);
     closeForm();
+    form.reset();
 }
 
 addBookBtn.onclick = openForm;
