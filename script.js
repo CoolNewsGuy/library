@@ -5,7 +5,6 @@ let libray = document.querySelector(".library"),
     addImageBtn = document.getElementById("add-image-btn"),
     closeBtn = document.querySelector(".close-form-btn"),
     submitBtn = document.querySelector('button[type="submit"'),
-    books = [];
 
 function Book(bookName, author, pages, isRead, image, isFavorite, description) {
     this.bookName = bookName;
@@ -59,7 +58,6 @@ function addBookToLibrary(e) {
         description
     );
 
-    books.push(newBook);
     closeForm();
     form.reset();
 }
