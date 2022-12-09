@@ -111,7 +111,8 @@ body::before {
 }
 
 .close-form-btn::before,
-.favorite-icon::before {
+.favorite-icon::before,
+.is-read-icon::before {
     content: "";
     z-index: -1;
     border-radius: 50%;
@@ -134,16 +135,27 @@ body::before {
     user-select: none;
 }
 
-.favorite-icon:hover {
+.favorite-icon:hover,
+.is-read-icon:hover {
     scale: 1.2;
 }
 
-.favorite-icon > * {
+.favorite-icon > *,
+.is-read-icon > * {
     pointer-events: none;
 }
 
 .red-heart {
     display: none;
+}
+
+.is-read-icon {
+    position: absolute;
+    right: 20px;
+    top: 70px;
+    transition: 0.2s;
+    cursor: pointer;
+    user-select: none;
 }
 
 /* TODO form */

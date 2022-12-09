@@ -5,7 +5,8 @@ let libray = document.querySelector(".library"),
     addImageBtn = document.getElementById("add-image-btn"),
     closeBtn = document.querySelector(".close-form-btn"),
     submitBtn = document.querySelector('button[type="submit"'),
-    favorBtn = document.querySelector(".favorite-icon");
+    favorBtn = document.querySelector(".favorite-icon"),
+    readBtn = document.querySelector(".is-read-icon");
 
 function Book(bookName, author, pages, isRead, image, isFavorite, description) {
     this.bookName = bookName;
@@ -24,7 +25,8 @@ Book.prototype.createBookElement = function () {
         bookAuthor = document.createElement("span"),
         bookPages = document.createElement("h3"),
         bookDescription = document.createElement("p"),
-        favoriteIcon = favorBtn.cloneNode(true);
+        favoriteIcon = favorBtn.cloneNode(true),
+        isReadIcon = readBtn.cloneNode(true);
 
     if (this.isFavorite === "yes-favorite") {
         favoriteIcon.querySelector(".no-heart").style.display = "none";
@@ -34,6 +36,14 @@ Book.prototype.createBookElement = function () {
         favoriteIcon.querySelector(".no-heart").style.display = "initial";
     }
 
+    if (this.isRead === "yes-read") {
+        isReadIcon.querySelector(".no-reading").style.display = "none";
+        isReadIcon.querySelector(".yellow-reading").style.display = "initial";
+    } else {
+        isReadIcon.querySelector(".yellow-reading").style.display = "none";
+        isReadIcon.querySelector(".no-reading").style.display = "initial";
+    }
+
     bookContainer.setAttribute("class", "book");
     bookText.setAttribute("class", "text");
     bookTitle.setAttribute("class", "title");
@@ -41,6 +51,7 @@ Book.prototype.createBookElement = function () {
     bookPages.setAttribute("class", "pages");
     bookDescription.setAttribute("class", "description");
     favoriteIcon.onclick = toggleFavorite;
+    isReadIcon.onclick = toggleRead;
 
     bookContainer.style.backgroundImage = `url(${URL.createObjectURL(
         this.image
@@ -51,7 +62,7 @@ Book.prototype.createBookElement = function () {
     bookDescription.innerText = this.description;
 
     bookText.append(bookTitle, bookAuthor, bookPages, bookDescription);
-    bookContainer.append(favoriteIcon, bookText);
+    bookContainer.append(isReadIcon, favoriteIcon, bookText);
     libray.insertBefore(bookContainer, addBookBtn);
 };
 
@@ -115,8 +126,22 @@ function toggleFavorite(e) {
     }
 }
 
+function toggleRead(e) {
+    let noReading = e.target.querySelector(".no-reading"),
+        yellowReading = e.target.querySelector(".yellow-reading");
+
+    if (noReading.style.display !== "none") {
+        noReading.style.display = "none";
+        yellowReading.style.display = "initial";
+    } else {
+        yellowReading.style.display = "none";
+        noReading.style.display = "initial";
+    }
+}
+
 addBookBtn.onclick = openForm;
 addImageBtn.onclick = () => imageInput.click();
 submitBtn.onclick = addBookToLibrary;
 closeBtn.onclick = closeForm;
 favorBtn.onclick = toggleFavorite;
+readBtn.onclick = toggleRead;
