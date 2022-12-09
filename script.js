@@ -26,6 +26,14 @@ Book.prototype.createBookElement = function () {
         bookDescription = document.createElement("p"),
         favoriteIcon = favorBtn.cloneNode(true);
 
+    if (this.isFavorite === "yes-favorite") {
+        favoriteIcon.querySelector(".no-heart").style.display = "none";
+        favoriteIcon.querySelector(".red-heart").style.display = "initial";
+    } else {
+        favoriteIcon.querySelector(".red-heart").style.display = "none";
+        favoriteIcon.querySelector(".no-heart").style.display = "initial";
+    }
+
     bookContainer.setAttribute("class", "book");
     bookText.setAttribute("class", "text");
     bookTitle.setAttribute("class", "title");
