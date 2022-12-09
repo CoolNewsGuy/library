@@ -138,6 +138,10 @@ body::before {
     scale: 1.2;
 }
 
+.favorite-icon > * {
+    pointer-events: none;
+}
+
 .red-heart {
     display: none;
 }

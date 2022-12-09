@@ -23,7 +23,8 @@ Book.prototype.createBookElement = function () {
         bookTitle = document.createElement("h3"),
         bookAuthor = document.createElement("span"),
         bookPages = document.createElement("h3"),
-        bookDescription = document.createElement("p");
+        bookDescription = document.createElement("p"),
+        favoriteIcon = favorBtn.cloneNode(true);
 
     bookContainer.setAttribute("class", "book");
     bookText.setAttribute("class", "text");
@@ -31,6 +32,7 @@ Book.prototype.createBookElement = function () {
     bookAuthor.setAttribute("class", "author");
     bookPages.setAttribute("class", "pages");
     bookDescription.setAttribute("class", "description");
+    favoriteIcon.onclick = toggleFavorite;
 
     bookContainer.style.backgroundImage = `url(${URL.createObjectURL(
         this.image
@@ -41,7 +43,7 @@ Book.prototype.createBookElement = function () {
     bookDescription.innerText = this.description;
 
     bookText.append(bookTitle, bookAuthor, bookPages, bookDescription);
-    bookContainer.appendChild(bookText);
+    bookContainer.append(favoriteIcon, bookText);
     libray.insertBefore(bookContainer, addBookBtn);
 };
 
@@ -87,14 +89,14 @@ function addBookToLibrary(e) {
         description
     );
 
-    closeForm();
     newBook.createBookElement();
+    closeForm();
     form.reset();
 }
 
-function toggleFavorite() {
-    let noHeart = document.querySelector(".no-heart"),
-        redHeart = document.querySelector(".red-heart");
+function toggleFavorite(e) {
+    let noHeart = e.target.querySelector(".no-heart"),
+        redHeart = e.target.querySelector(".red-heart");
 
     if (noHeart.style.display !== "none") {
         noHeart.style.display = "none";
