@@ -4,7 +4,7 @@ let libray = document.querySelector(".library"),
     imageInput = document.getElementById("book-image"),
     addImageBtn = document.getElementById("add-image-btn"),
     closeBtn = document.querySelector(".close-form-btn"),
-    submitBtn = document.querySelector('button[type="submit"'),
+    submitBtn = document.querySelector('button[type="submit"');
 
 function Book(bookName, author, pages, isRead, image, isFavorite, description) {
     this.bookName = bookName;
@@ -15,6 +15,34 @@ function Book(bookName, author, pages, isRead, image, isFavorite, description) {
     this.isFavorite = isFavorite;
     this.description = description;
 }
+
+Book.prototype.createBookElement = function () {
+    let bookContainer = document.createElement("div"),
+        bookText = document.createElement("div"),
+        bookTitle = document.createElement("h3"),
+        bookAuthor = document.createElement("span"),
+        bookPages = document.createElement("h3"),
+        bookDescription = document.createElement("p");
+
+    bookContainer.setAttribute("class", "book");
+    bookText.setAttribute("class", "text");
+    bookTitle.setAttribute("class", "title");
+    bookAuthor.setAttribute("class", "author");
+    bookPages.setAttribute("class", "pages");
+    bookDescription.setAttribute("class", "description");
+
+    bookContainer.style.backgroundImage = `url(${URL.createObjectURL(
+        this.image
+    )})`;
+    bookTitle.innerText = this.bookName;
+    bookAuthor.innerText = this.author;
+    bookPages.innerText = this.pages + " pages";
+    bookDescription.innerText = this.description;
+
+    bookText.append(bookTitle, bookAuthor, bookPages, bookDescription);
+    bookContainer.appendChild(bookText);
+    libray.insertBefore(bookContainer, addBookBtn);
+};
 
 function closeForm() {
     closeBtn.style.display = "none";
@@ -59,6 +87,7 @@ function addBookToLibrary(e) {
     );
 
     closeForm();
+    newBook.createBookElement();
     form.reset();
 }
 
