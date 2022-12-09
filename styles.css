@@ -50,7 +50,7 @@ body::before {
     background: rgb(246, 248, 149);
     transition: 0.2s;
     box-shadow: 0 0 10px 2px #0002;
-    cursor: pointer;
+    z-index: -1;
 }
 
 .book:hover {
@@ -69,6 +69,8 @@ body::before {
     justify-content: center;
     align-items: center;
     font-size: 6rem;
+    cursor: pointer;
+    user-select: none;
 }
 
 .text {
@@ -106,6 +108,38 @@ body::before {
     margin: auto;
     width: 85%;
     text-align: left;
+}
+
+.close-form-btn::before,
+.favorite-icon::before {
+    content: "";
+    z-index: -1;
+    border-radius: 50%;
+    background: #0007;
+    height: 40px;
+    width: 40px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.favorite-icon {
+    height: 24px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
+    transition: 0.2s;
+    user-select: none;
+}
+
+.favorite-icon:hover {
+    scale: 1.2;
+}
+
+.red-heart {
+    display: none;
 }
 
 /* TODO form */
@@ -203,19 +237,6 @@ button[type="submit"]:hover {
     cursor: pointer;
     display: none;
     user-select: none;
-}
-
-.close-form-btn::before {
-    content: "";
-    z-index: -1;
-    border-radius: 50%;
-    background: #0007;
-    height: 40px;
-    width: 40px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
 }
 
 .close-form-btn:hover::before {

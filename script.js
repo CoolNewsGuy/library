@@ -4,7 +4,8 @@ let libray = document.querySelector(".library"),
     imageInput = document.getElementById("book-image"),
     addImageBtn = document.getElementById("add-image-btn"),
     closeBtn = document.querySelector(".close-form-btn"),
-    submitBtn = document.querySelector('button[type="submit"');
+    submitBtn = document.querySelector('button[type="submit"'),
+    favorBtn = document.querySelector(".favorite-icon");
 
 function Book(bookName, author, pages, isRead, image, isFavorite, description) {
     this.bookName = bookName;
@@ -91,7 +92,21 @@ function addBookToLibrary(e) {
     form.reset();
 }
 
+function toggleFavorite() {
+    let noHeart = document.querySelector(".no-heart"),
+        redHeart = document.querySelector(".red-heart");
+
+    if (noHeart.style.display !== "none") {
+        noHeart.style.display = "none";
+        redHeart.style.display = "initial";
+    } else {
+        redHeart.style.display = "none";
+        noHeart.style.display = "initial";
+    }
+}
+
 addBookBtn.onclick = openForm;
 addImageBtn.onclick = () => imageInput.click();
 submitBtn.onclick = addBookToLibrary;
 closeBtn.onclick = closeForm;
+favorBtn.onclick = toggleFavorite;
