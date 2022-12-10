@@ -6,7 +6,8 @@ let library = document.querySelector(".library"),
     closeBtn = document.querySelector(".close-form-btn"),
     submitBtn = document.querySelector('button[type="submit"'),
     favorBtn = document.querySelector(".favorite-icon"),
-    readBtn = document.querySelector(".is-read-icon");
+    readBtn = document.querySelector(".is-read-icon"),
+    books = [];
 
 function Book(bookName, author, pages, isRead, image, isFavorite, description) {
     this.bookName = bookName;
@@ -53,9 +54,7 @@ Book.prototype.createBookElement = function () {
     favoriteIcon.onclick = toggleFavorite;
     isReadIcon.onclick = toggleRead;
 
-    bookContainer.style.backgroundImage = `url(${URL.createObjectURL(
-        this.image
-    )})`;
+    bookContainer.style.backgroundImage = `url(${this.image})`;
     bookTitle.innerText = this.bookName;
     bookAuthor.innerText = this.author;
     bookPages.innerText = this.pages + " pages";
@@ -64,6 +63,27 @@ Book.prototype.createBookElement = function () {
     bookText.append(bookTitle, bookAuthor, bookPages, bookDescription);
     bookContainer.append(isReadIcon, favoriteIcon, bookText);
     library.insertBefore(bookContainer, addBookBtn);
+};
+
+Book.prototype.saveImage = function () {
+    let reader = new FileReader();
+
+    reader.addEventListener(
+        "load",
+        () => {
+            localStorage.setItem("image", reader.result);
+        },
+        false
+    );
+
+    reader.readAsDataURL(this.image);
+};
+
+Book.prototype.addToBooks = function () {
+    this.saveImage();
+    this.image = localStorage.image;
+    books.push(this);
+    localStorage.setItem("books", JSON.stringify(books));
 };
 
 function closeForm() {
@@ -108,6 +128,7 @@ function addBookToLibrary(e) {
         description
     );
 
+    newBook.addToBooks();
     newBook.createBookElement();
     closeForm();
     form.reset();
