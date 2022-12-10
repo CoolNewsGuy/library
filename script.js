@@ -1,4 +1,4 @@
-let libray = document.querySelector(".library"),
+let library = document.querySelector(".library"),
     addBookBtn = document.querySelector(".add-book"),
     form = document.querySelector("form"),
     imageInput = document.getElementById("book-image"),
@@ -63,7 +63,7 @@ Book.prototype.createBookElement = function () {
 
     bookText.append(bookTitle, bookAuthor, bookPages, bookDescription);
     bookContainer.append(isReadIcon, favoriteIcon, bookText);
-    libray.insertBefore(bookContainer, addBookBtn);
+    library.insertBefore(bookContainer, addBookBtn);
 };
 
 function closeForm() {
@@ -72,7 +72,7 @@ function closeForm() {
     document
         .querySelector(":root")
         .style.setProperty("--black-transparent-background", "initial");
-    libray.style.zIndex = "initial";
+    library.style.zIndex = "initial";
 }
 
 function openForm() {
@@ -84,7 +84,7 @@ function openForm() {
             "--black-transparent-background",
             "linear-gradient(#0002, #0002)"
         );
-    libray.style.zIndex = "-1";
+    library.style.zIndex = "-1";
 }
 
 function addBookToLibrary(e) {
