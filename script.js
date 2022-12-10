@@ -28,7 +28,8 @@ Book.prototype.createBookElement = function () {
         bookPages = document.createElement("h3"),
         bookDescription = document.createElement("p"),
         favoriteIcon = favorBtn.cloneNode(true),
-        isReadIcon = readBtn.cloneNode(true);
+        isReadIcon = readBtn.cloneNode(true),
+        trashIcon = trashBtn.cloneNode(true);
 
     if (this.isFavorite === "yes-favorite") {
         favoriteIcon.querySelector(".no-heart").style.display = "none";
@@ -46,6 +47,9 @@ Book.prototype.createBookElement = function () {
         isReadIcon.querySelector(".no-reading").style.display = "initial";
     }
 
+    trashIcon.onmouseover = changeTrashColor;
+    trashIcon.onmouseleave = changeTrashColor;
+
     bookContainer.setAttribute("class", "book");
     bookText.setAttribute("class", "text");
     bookTitle.setAttribute("class", "title");
@@ -62,7 +66,7 @@ Book.prototype.createBookElement = function () {
     bookDescription.innerText = this.description;
 
     bookText.append(bookTitle, bookAuthor, bookPages, bookDescription);
-    bookContainer.append(isReadIcon, favoriteIcon, bookText);
+    bookContainer.append(trashIcon, isReadIcon, favoriteIcon, bookText);
     library.insertBefore(bookContainer, addBookBtn);
 };
 
