@@ -7,6 +7,7 @@ let library = document.querySelector(".library"),
     submitBtn = document.querySelector('button[type="submit"'),
     favorBtn = document.querySelector(".favorite-icon"),
     readBtn = document.querySelector(".is-read-icon"),
+    trashBtn = document.querySelector(".trash-icon"),
     books = [];
 
 function Book(bookName, author, pages, isRead, image, isFavorite, description) {
@@ -160,6 +161,19 @@ function toggleRead(e) {
     }
 }
 
+function changeTrashColor(e) {
+    let normalTrash = e.target.querySelector(".normal-trash"),
+        redTrash = e.target.querySelector(".red-trash");
+
+    if (normalTrash.style.display !== "none") {
+        normalTrash.style.display = "none";
+        redTrash.style.display = "initial";
+    } else {
+        redTrash.style.display = "none";
+        normalTrash.style.display = "initial";
+    }
+}
+
 function retrieveLibrary() {
     if (localStorage.books) {
         books = JSON.parse(localStorage.books);
@@ -177,4 +191,6 @@ submitBtn.onclick = addBookToLibrary;
 closeBtn.onclick = closeForm;
 favorBtn.onclick = toggleFavorite;
 readBtn.onclick = toggleRead;
+trashBtn.onmouseover = changeTrashColor;
+trashBtn.onmouseleave = changeTrashColor;
 window.onload = retrieveLibrary;

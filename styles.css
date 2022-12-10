@@ -110,9 +110,46 @@ body::before {
     text-align: left;
 }
 
+.favorite-icon,
+.is-read-icon,
+.trash-icon {
+    position: absolute;
+    top: 20px;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    user-select: none;
+    transition: 0.2s;
+}
+
+.favorite-icon > *,
+.is-read-icon > *,
+.trash-icon > * {
+    pointer-events: none;
+}
+
+.favorite-icon {
+    right: 20px;
+}
+
+.is-read-icon {
+    right: 20px;
+    top: 70px;
+}
+
+.trash-icon {
+    left: 20px;
+}
+
+.red-heart,
+.red-trash,
+.yellow-reading {
+    display: none;
+}
 .close-form-btn::before,
 .favorite-icon::before,
-.is-read-icon::before {
+.is-read-icon::before,
+.trash-icon::before {
     content: "";
     z-index: -1;
     border-radius: 50%;
@@ -125,37 +162,10 @@ body::before {
     transform: translate(-50%, -50%);
 }
 
-.favorite-icon {
-    height: 24px;
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    cursor: pointer;
-    transition: 0.2s;
-    user-select: none;
-}
-
 .favorite-icon:hover,
-.is-read-icon:hover {
+.is-read-icon:hover,
+.trash-icon:hover {
     scale: 1.2;
-}
-
-.favorite-icon > *,
-.is-read-icon > * {
-    pointer-events: none;
-}
-
-.red-heart {
-    display: none;
-}
-
-.is-read-icon {
-    position: absolute;
-    right: 20px;
-    top: 70px;
-    transition: 0.2s;
-    cursor: pointer;
-    user-select: none;
 }
 
 /* TODO form */
