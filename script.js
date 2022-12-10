@@ -49,6 +49,9 @@ Book.prototype.createBookElement = function () {
 
     trashIcon.onmouseover = changeTrashColor;
     trashIcon.onmouseleave = changeTrashColor;
+    favoriteIcon.onclick = toggleFavorite;
+    isReadIcon.onclick = toggleRead;
+    trashIcon.onclick = removeBook;
 
     bookContainer.setAttribute("class", "book");
     bookText.setAttribute("class", "text");
@@ -56,8 +59,6 @@ Book.prototype.createBookElement = function () {
     bookAuthor.setAttribute("class", "author");
     bookPages.setAttribute("class", "pages");
     bookDescription.setAttribute("class", "description");
-    favoriteIcon.onclick = toggleFavorite;
-    isReadIcon.onclick = toggleRead;
 
     bookContainer.style.backgroundImage = `url(${this.image})`;
     bookTitle.innerText = this.bookName;
@@ -176,6 +177,10 @@ function changeTrashColor(e) {
         redTrash.style.display = "none";
         normalTrash.style.display = "initial";
     }
+}
+
+function removeBook(e) {
+    e.target.parentNode.remove();
 }
 
 function retrieveLibrary() {
