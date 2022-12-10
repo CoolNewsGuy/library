@@ -160,9 +160,21 @@ function toggleRead(e) {
     }
 }
 
+function retrieveLibrary() {
+    if (localStorage.books) {
+        books = JSON.parse(localStorage.books);
+    }
+
+    for (let book of books) {
+        Object.setPrototypeOf(book, Book.prototype);
+        book.createBookElement();
+    }
+}
+
 addBookBtn.onclick = openForm;
 addImageBtn.onclick = () => imageInput.click();
 submitBtn.onclick = addBookToLibrary;
 closeBtn.onclick = closeForm;
 favorBtn.onclick = toggleFavorite;
 readBtn.onclick = toggleRead;
+window.onload = retrieveLibrary;
