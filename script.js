@@ -180,7 +180,16 @@ function changeTrashColor(e) {
 }
 
 function removeBook(e) {
-    e.target.parentNode.remove();
+    let currentBook = e.target.parentNode;
+
+    books = books.filter(
+        (book) =>
+            book.bookName !== currentBook.querySelector(".title").innerText &&
+            book.author !== currentBook.querySelector(".author").innerText
+    );
+
+    localStorage.setItem("books", JSON.stringify(books));
+    currentBook.remove();
 }
 
 function retrieveLibrary() {
