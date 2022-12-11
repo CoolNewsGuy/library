@@ -188,6 +188,30 @@ function toggleRead(e) {
         yellowReading.style.display = "none";
         noReading.style.display = "initial";
     }
+
+    saveRead(e);
+}
+
+function saveRead(e) {
+    let currentBook = e.target.parentNode;
+
+    for (let book of books) {
+        if (
+            book.bookName === currentBook.querySelector(".title").innerText &&
+            book.author === currentBook.querySelector(".author").innerText
+        ) {
+            switch (book.isRead) {
+                case "not-read":
+                    book.isRead = "yes-read";
+                    break;
+
+                case "yes-read":
+                    book.isRead = "not-read";
+            }
+        }
+    }
+
+    localStorage.setItem("books", JSON.stringify(books));
 }
 
 function changeTrashColor(e) {
