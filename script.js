@@ -151,6 +151,30 @@ function toggleFavorite(e) {
         redHeart.style.display = "none";
         noHeart.style.display = "initial";
     }
+
+    saveFavorite(e);
+}
+
+function saveFavorite(e) {
+    let currentBook = e.target.parentNode;
+
+    for (let book of books) {
+        if (
+            book.bookName === currentBook.querySelector(".title").innerText &&
+            book.author === currentBook.querySelector(".author").innerText
+        ) {
+            switch (book.isFavorite) {
+                case "not-favorite":
+                    book.isFavorite = "yes-favorite";
+                    break;
+
+                case "yes-favorite":
+                    book.isFavorite = "not-favorite";
+            }
+        }
+    }
+
+    localStorage.setItem("books", JSON.stringify(books));
 }
 
 function toggleRead(e) {
