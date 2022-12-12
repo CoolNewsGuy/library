@@ -112,7 +112,8 @@ body::before {
 
 .favorite-icon,
 .is-read-icon,
-.trash-icon {
+.trash-icon,
+.edit-icon {
     position: absolute;
     top: 20px;
     width: 24px;
@@ -124,7 +125,8 @@ body::before {
 
 .favorite-icon > *,
 .is-read-icon > *,
-.trash-icon > * {
+.trash-icon > *,
+.edit-icon > * {
     pointer-events: none;
 }
 
@@ -141,15 +143,24 @@ body::before {
     left: 20px;
 }
 
+.edit-icon {
+    color: #fff;
+    left: 20px;
+    top: 70px;
+}
+
 .red-heart,
 .red-trash,
-.yellow-reading {
+.yellow-reading,
+.green-pen {
     display: none;
 }
+
 .close-form-btn::before,
 .favorite-icon::before,
 .is-read-icon::before,
-.trash-icon::before {
+.trash-icon::before,
+.edit-icon::before {
     content: "";
     z-index: -1;
     border-radius: 50%;
@@ -164,7 +175,8 @@ body::before {
 
 .favorite-icon:hover,
 .is-read-icon:hover,
-.trash-icon:hover {
+.trash-icon:hover,
+.edit-icon:hover {
     scale: 1.2;
 }
 

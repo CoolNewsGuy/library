@@ -8,7 +8,8 @@ let library = document.querySelector(".library"),
     favorBtn = document.querySelector(".favorite-icon"),
     readBtn = document.querySelector(".is-read-icon"),
     trashBtn = document.querySelector(".trash-icon"),
-    books = [];
+    editBtn = document.querySelector(".edit-icon");
+books = [];
 
 function Book(bookName, author, pages, isRead, image, isFavorite, description) {
     this.bookName = bookName;
@@ -29,7 +30,8 @@ Book.prototype.createBookElement = function () {
         bookDescription = document.createElement("p"),
         favoriteIcon = favorBtn.cloneNode(true),
         isReadIcon = readBtn.cloneNode(true),
-        trashIcon = trashBtn.cloneNode(true);
+        trashIcon = trashBtn.cloneNode(true),
+        editIcon = editBtn.cloneNode(true);
 
     if (this.isFavorite === "yes-favorite") {
         favoriteIcon.querySelector(".no-heart").style.display = "none";
@@ -49,6 +51,8 @@ Book.prototype.createBookElement = function () {
 
     trashIcon.onmouseover = changeTrashColor;
     trashIcon.onmouseleave = changeTrashColor;
+    editIcon.onmouseover = changePenColor;
+    editIcon.onmouseleave = changePenColor;
     favoriteIcon.onclick = toggleFavorite;
     isReadIcon.onclick = toggleRead;
     trashIcon.onclick = removeBook;
@@ -67,7 +71,13 @@ Book.prototype.createBookElement = function () {
     bookDescription.innerText = this.description;
 
     bookText.append(bookTitle, bookAuthor, bookPages, bookDescription);
-    bookContainer.append(trashIcon, isReadIcon, favoriteIcon, bookText);
+    bookContainer.append(
+        editIcon,
+        trashIcon,
+        isReadIcon,
+        favoriteIcon,
+        bookText
+    );
     library.insertBefore(bookContainer, addBookBtn);
 };
 
@@ -227,6 +237,19 @@ function changeTrashColor(e) {
     }
 }
 
+function changePenColor(e) {
+    let normalPen = e.target.querySelector(".normal-pen"),
+        greenPen = e.target.querySelector(".green-pen");
+
+    if (normalPen.style.display !== "none") {
+        normalPen.style.display = "none";
+        greenPen.style.display = "initial";
+    } else {
+        greenPen.style.display = "none";
+        normalPen.style.display = "initial";
+    }
+}
+
 function removeBook(e) {
     let currentBook = e.target.parentNode;
 
@@ -259,4 +282,6 @@ favorBtn.onclick = toggleFavorite;
 readBtn.onclick = toggleRead;
 trashBtn.onmouseover = changeTrashColor;
 trashBtn.onmouseleave = changeTrashColor;
+editBtn.onmouseover = changePenColor;
+editBtn.onmouseleave = changePenColor;
 window.onload = retrieveLibrary;
