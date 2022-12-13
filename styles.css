@@ -58,7 +58,6 @@ body::before {
 }
 
 .book:not(.add-book) {
-    background: url(sample.jpg);
     background-position: center;
     background-size: cover;
     position: relative;
