@@ -4,12 +4,14 @@ let library = document.querySelector(".library"),
     imageInput = document.getElementById("book-image"),
     addImageBtn = document.getElementById("add-image-btn"),
     closeBtn = document.querySelector(".close-form-btn"),
-    submitBtn = document.querySelector('button[type="submit"'),
+    submitBtn = document.querySelector(".add-book-btn"),
+    editBookBtn = document.querySelector(".edit-book-btn"),
     favorBtn = document.querySelector(".favorite-icon"),
     readBtn = document.querySelector(".is-read-icon"),
     trashBtn = document.querySelector(".trash-icon"),
-    editBtn = document.querySelector(".edit-icon");
-books = [];
+    editBtn = document.querySelector(".edit-icon"),
+    chosenBook = "aymen",
+    books = [];
 
 function Book(bookName, author, pages, isRead, image, isFavorite, description) {
     this.bookName = bookName;
@@ -19,6 +21,7 @@ function Book(bookName, author, pages, isRead, image, isFavorite, description) {
     this.image = image;
     this.isFavorite = isFavorite;
     this.description = description;
+    this.isEdited = false;
 }
 
 Book.prototype.createBookElement = function () {
@@ -53,6 +56,7 @@ Book.prototype.createBookElement = function () {
     trashIcon.onmouseleave = changeTrashColor;
     editIcon.onmouseover = changePenColor;
     editIcon.onmouseleave = changePenColor;
+    editIcon.onclick = openForm;
     favoriteIcon.onclick = toggleFavorite;
     isReadIcon.onclick = toggleRead;
     trashIcon.onclick = removeBook;
@@ -78,7 +82,24 @@ Book.prototype.createBookElement = function () {
         favoriteIcon,
         bookText
     );
-    library.insertBefore(bookContainer, addBookBtn);
+
+    if (this.isEdited) {
+        library.insertBefore(bookContainer, chosenBook);
+        chosenBook.remove();
+        this.isEdited = false;
+
+        for (let book of books) {
+            if (
+                book.bookName ===
+                    chosenBook.querySelector(".title").innerText &&
+                book.author === chosenBook.querySelector(".author").innerText
+            ) {
+                books[books.indexOf(book)] = this;
+            }
+        }
+
+        localStorage.setItem("books", JSON.stringify(books));
+    } else library.insertBefore(bookContainer, addBookBtn);
 };
 
 Book.prototype.saveImage = function () {
@@ -93,11 +114,10 @@ Book.prototype.saveImage = function () {
     );
 
     reader.readAsDataURL(this.image);
+    this.image = localStorage.image;
 };
 
 Book.prototype.addToBooks = function () {
-    this.saveImage();
-    this.image = localStorage.image;
     books.push(this);
     localStorage.setItem("books", JSON.stringify(books));
 };
@@ -111,7 +131,7 @@ function closeForm() {
     library.style.zIndex = "initial";
 }
 
-function openForm() {
+function openForm(e) {
     closeBtn.style.display = "initial";
     form.style.display = "initial";
     document
@@ -121,6 +141,23 @@ function openForm() {
             "linear-gradient(#0002, #0002)"
         );
     library.style.zIndex = "-1";
+
+    let originalFormTitle = form.querySelector(".original-form-title"),
+        alternativeFormTitle = form.querySelector(".alternative-form-title");
+
+    if (e.target.parentNode.classList.contains("book")) {
+        originalFormTitle.style.display = "none";
+        alternativeFormTitle.style.display = "block";
+        submitBtn.style.display = "none";
+        editBookBtn.style.display = "block";
+    } else {
+        originalFormTitle.style.display = "block";
+        alternativeFormTitle.style.display = "none";
+        submitBtn.style.display = "block";
+        editBookBtn.style.display = "none";
+    }
+
+    chosenBook = e.target.parentNode;
 }
 
 function addBookToLibrary(e) {
@@ -143,7 +180,7 @@ function addBookToLibrary(e) {
         isFavorite,
         description
     );
-
+    newBook.saveImage();
     newBook.addToBooks();
     newBook.createBookElement();
     closeForm();
@@ -263,6 +300,34 @@ function removeBook(e) {
     currentBook.remove();
 }
 
+function editBookInformation(e) {
+    e.preventDefault();
+
+    let bookName = document.getElementById("book-name").value,
+        bookAuthor = document.getElementById("book-author").value,
+        bookPages = document.getElementById("pages").value,
+        isRead = document.querySelector('[name="read"]:checked').value,
+        image = document.getElementById("book-image").files[0],
+        isFavorite = document.querySelector('[name="favorite"]:checked').value,
+        description = document.getElementById("book-description").value;
+
+    let editedBook = new Book(
+        bookName,
+        bookAuthor,
+        bookPages,
+        isRead,
+        image,
+        isFavorite,
+        description
+    );
+
+    editedBook.isEdited = true;
+    editedBook.saveImage();
+    editedBook.createBookElement();
+    closeForm();
+    form.reset();
+}
+
 function retrieveLibrary() {
     if (localStorage.books) {
         books = JSON.parse(localStorage.books);
@@ -284,4 +349,6 @@ trashBtn.onmouseover = changeTrashColor;
 trashBtn.onmouseleave = changeTrashColor;
 editBtn.onmouseover = changePenColor;
 editBtn.onmouseleave = changePenColor;
+editBtn.onclick = openForm;
+editBookBtn.onclick = editBookInformation;
 window.onload = retrieveLibrary;

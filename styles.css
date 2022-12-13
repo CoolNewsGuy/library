@@ -211,6 +211,10 @@ form {
     margin-bottom: 10px;
 }
 
+.alternative-form-title {
+    display: none;
+}
+
 .details-container {
     width: 90%;
     margin: auto;
@@ -261,6 +265,10 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
     background: rgb(86, 255, 89);
+}
+
+button.edit-book-btn {
+    display: none;
 }
 
 .close-form-btn {
