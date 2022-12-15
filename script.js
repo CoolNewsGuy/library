@@ -110,7 +110,7 @@ Book.prototype.displayBook = function () {
         () => {
             localStorage.setItem("image", reader.result);
             this.image = localStorage.image;
-            this.addToBooks();
+            if (!this.isEdited) this.addToBooks();
             this.createBookElement();
         },
         false
@@ -184,6 +184,33 @@ function addBookToLibrary(e) {
     );
 
     newBook.displayBook();
+    closeForm();
+    form.reset();
+}
+
+function editBookInformation(e) {
+    e.preventDefault();
+
+    let bookName = document.getElementById("book-name").value,
+        bookAuthor = document.getElementById("book-author").value,
+        bookPages = document.getElementById("pages").value,
+        isRead = document.querySelector('[name="read"]:checked').value,
+        image = document.getElementById("book-image").files[0],
+        isFavorite = document.querySelector('[name="favorite"]:checked').value,
+        description = document.getElementById("book-description").value;
+
+    let editedBook = new Book(
+        bookName,
+        bookAuthor,
+        bookPages,
+        isRead,
+        image,
+        isFavorite,
+        description
+    );
+
+    editedBook.isEdited = true;
+    editedBook.displayBook();
     closeForm();
     form.reset();
 }
@@ -299,34 +326,6 @@ function removeBook(e) {
 
     localStorage.setItem("books", JSON.stringify(books));
     currentBook.remove();
-}
-
-function editBookInformation(e) {
-    e.preventDefault();
-
-    let bookName = document.getElementById("book-name").value,
-        bookAuthor = document.getElementById("book-author").value,
-        bookPages = document.getElementById("pages").value,
-        isRead = document.querySelector('[name="read"]:checked').value,
-        image = document.getElementById("book-image").files[0],
-        isFavorite = document.querySelector('[name="favorite"]:checked').value,
-        description = document.getElementById("book-description").value;
-
-    let editedBook = new Book(
-        bookName,
-        bookAuthor,
-        bookPages,
-        isRead,
-        image,
-        isFavorite,
-        description
-    );
-
-    editedBook.isEdited = true;
-    editedBook.saveImage();
-    editedBook.createBookElement();
-    closeForm();
-    form.reset();
 }
 
 function retrieveLibrary() {
