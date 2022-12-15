@@ -109,8 +109,8 @@ Book.prototype.displayBook = function () {
         "load",
         () => {
             localStorage.setItem("image", reader.result);
-            this.addToBooks();
             this.image = localStorage.image;
+            this.addToBooks();
             this.createBookElement();
         },
         false
