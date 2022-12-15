@@ -102,19 +102,21 @@ Book.prototype.createBookElement = function () {
     } else library.insertBefore(bookContainer, addBookBtn);
 };
 
-Book.prototype.saveImage = function () {
+Book.prototype.displayBook = function () {
     let reader = new FileReader();
 
     reader.addEventListener(
         "load",
         () => {
             localStorage.setItem("image", reader.result);
+            this.addToBooks();
+            this.image = localStorage.image;
+            this.createBookElement();
         },
         false
     );
 
     reader.readAsDataURL(this.image);
-    this.image = localStorage.image;
 };
 
 Book.prototype.addToBooks = function () {
@@ -180,9 +182,8 @@ function addBookToLibrary(e) {
         isFavorite,
         description
     );
-    newBook.saveImage();
-    newBook.addToBooks();
-    newBook.createBookElement();
+
+    newBook.displayBook();
     closeForm();
     form.reset();
 }
