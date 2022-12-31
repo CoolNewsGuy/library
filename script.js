@@ -5,7 +5,7 @@ let library = document.querySelector(".library"),
     readBtn = document.querySelector(".is-read-icon"),
     trashBtn = document.querySelector(".trash-icon"),
     editBtn = document.querySelector(".edit-icon"),
-    chosenBook = "aymen",
+    chosenBook,
     books = [];
 
 function Book(bookName, author, pages, isRead, image, isFavorite, description) {
