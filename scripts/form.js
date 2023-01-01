@@ -41,7 +41,3 @@ function openForm(e) {
 
     chosenBook = e.target.parentNode;
 }
-
-addImageBtn.onclick = () => imageInput.click();
-submitBtn.onclick = addBookToLibrary;
-closeBtn.onclick = closeForm;
