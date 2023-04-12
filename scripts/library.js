@@ -36,7 +36,8 @@ function addBookToLibrary(e) {
 }
 
 function editBookInformation(e) {
-    e.preventDefault();
+    if (isFormValid) e.preventDefault();
+    else return;
 
     let bookName = document.getElementById("book-name").value,
         bookAuthor = document.getElementById("book-author").value,
