@@ -9,7 +9,8 @@ let library = document.querySelector(".library"),
     books = [];
 
 function addBookToLibrary(e) {
-    e.preventDefault();
+    if (isFormValid) e.preventDefault();
+    else return;
 
     let bookName = document.getElementById("book-name").value,
         bookAuthor = document.getElementById("book-author").value,

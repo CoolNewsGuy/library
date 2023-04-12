@@ -2,7 +2,8 @@ let form = document.querySelector("form"),
     submitBtn = document.querySelector(".add-book-btn"),
     closeBtn = document.querySelector(".close-form-btn"),
     imageInput = document.getElementById("book-image"),
-    addImageBtn = document.getElementById("add-image-btn");
+    addImageBtn = document.getElementById("add-image-btn"),
+    isFormValid = false;
 
 function closeForm() {
     closeBtn.style.display = "none";
