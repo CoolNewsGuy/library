@@ -42,3 +42,31 @@ function openForm(e) {
 
     chosenBook = e.target.parentNode;
 }
+
+function checkIfFormIsValid() {
+    let formInputs = document.querySelectorAll("form input");
+
+    formInputs.forEach((input) => {
+        isFormValid = input.checkValidity();
+    });
+
+    return isFormValid;
+}
+
+form.onsubmit = (e) => {
+    // if form is not valid then stop
+    if (!checkIfFormIsValid()) {
+        return;
+    }
+
+    let formAddAndEditBtns = form.querySelectorAll("button[type='submit']");
+
+    // check whether user is adding or editing the book
+    if (formAddAndEditBtns[0].style.display === "block") {
+        addBookToLibrary(e);
+    } else {
+        editBookInformation(e);
+    }
+
+    isFormValid = false;
+};
