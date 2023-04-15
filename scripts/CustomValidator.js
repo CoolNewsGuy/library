@@ -8,6 +8,10 @@ class CustomValidator {
         };
     }
 
+    static get form() {
+        return document.querySelector("form");
+    }
+
     static get formInputs() {
         return document.querySelectorAll("input:not([type='radio']), textarea");
     }
@@ -28,6 +32,12 @@ class CustomValidator {
             input.classList.remove("invalid");
         }
     }
+
+    static preventInvalidFormSubmission(e) {
+        if (!CustomValidator.form.checkValidity()) {
+            e.preventDefault();
+        }
+    }
 }
 
 CustomValidator.formInputs.forEach((input) => {
@@ -35,3 +45,8 @@ CustomValidator.formInputs.forEach((input) => {
         input.addEventListener(event, CustomValidator.checkIfInputIsEmpty);
     });
 });
+
+CustomValidator.form.addEventListener(
+    "submit",
+    CustomValidator.preventInvalidFormSubmission
+);
