@@ -7,4 +7,8 @@ class CustomValidator {
             bookPagesError: "Enter the number of the book's pages",
         };
     }
+
+    static get formInputs() {
+        return document.querySelectorAll("input:not([type='radio']), textarea");
+    }
 }
