@@ -219,11 +219,28 @@ form {
     margin: auto;
 }
 
-.details-container > fieldset > input:not(:last-child),
-.details-container > fieldset > div > input,
-button,
-fieldset {
+form .container {
     margin-bottom: 20px;
+}
+
+form input {
+    padding: 5px;
+}
+
+form input:valid,
+textarea {
+    outline-color: green;
+}
+
+form input:invalid,
+textarea {
+    outline-color: #f00;
+    color: #f00;
+}
+
+form .error-message {
+    margin-top: 5px;
+    color: #f00;
 }
 
 fieldset > label,
