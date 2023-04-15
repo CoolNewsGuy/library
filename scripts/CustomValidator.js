@@ -16,15 +16,16 @@ class CustomValidator {
         let errorElement = document.querySelector(
             `#${e.target.id} + .error-message`
         );
+        let input = e.target;
 
-        if (e.target.value.length === 0) {
-            errorElement.textContent =
-                CustomValidator.errorMessages.emptyInputError;
+        if (input.validity.valueMissing) {
+            errorElement.textContent = input.validationMessage;
 
-            e.target.classList.add("invalid");
+            input.classList.add("invalid");
         } else {
             errorElement.textContent = "";
-            e.target.classList.remove("invalid");
+
+            input.classList.remove("invalid");
         }
     }
 }
