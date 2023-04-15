@@ -238,6 +238,11 @@ textarea {
     color: #f00;
 }
 
+input.invalid {
+    border-color: #f00;
+    border-radius: 5px;
+}
+
 form .error-message {
     margin-top: 5px;
     color: #f00;
