@@ -233,14 +233,19 @@ textarea {
 }
 
 form input:invalid,
-textarea {
+textarea.invalid {
     outline-color: #f00;
     color: #f00;
 }
 
-input.invalid {
+input.invalid,
+textarea.invalid {
     border-color: #f00;
     border-radius: 5px;
+}
+
+textarea.invalid {
+    border-width: 2px;
 }
 
 form .error-message {
