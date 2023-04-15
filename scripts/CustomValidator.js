@@ -33,6 +33,21 @@ class CustomValidator {
         }
     }
 
+    static checkIfImageUploaded() {
+        let bookImage = document.querySelector("#book-image");
+        let bookImageErrorElement = document.querySelector(".book-image-error");
+
+        if (bookImage.value === "") {
+            bookImage.setCustomValidity("Please select an image");
+
+            bookImageErrorElement.textContent = bookImage.validationMessage;
+        } else {
+            bookImage.setCustomValidity("");
+
+            bookImageErrorElement.textContent = "";
+        }
+    }
+
     static preventInvalidFormSubmission(e) {
         if (!CustomValidator.form.checkValidity()) {
             e.preventDefault();
@@ -46,7 +61,7 @@ CustomValidator.formInputs.forEach((input) => {
     });
 });
 
-CustomValidator.form.addEventListener(
-    "submit",
-    CustomValidator.preventInvalidFormSubmission
-);
+CustomValidator.form.addEventListener("submit", (e) => {
+    CustomValidator.checkIfImageUploaded();
+    CustomValidator.preventInvalidFormSubmission(e);
+});
