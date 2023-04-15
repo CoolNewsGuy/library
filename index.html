@@ -18,38 +18,50 @@
     <div class="details-container">
       <fieldset class="general-info">
         <legend>General Information</legend>
-        <label for="book-name">
-          Name of the book:
-        </label>
-        <input type="text" id="book-name" required>
-        <div class="error-message name-error"></div>
-        <label for="book-author">
-          Author of the book:
-        </label>
-        <input type="text" id="book-author" required>
-        <div class="error-message email-error"></div>
-        <label for="book-description">
-          Description of the book:
-        </label>
-        <textarea required name="book-description" id="book-description" cols="30" rows="10"></textarea>
-        <div class="error-message description-error"></div>
+
+        <div class="name-container container">
+          <label for="book-name">
+            Name of the book:
+          </label>
+          <input type="text" id="book-name" required>
+          <div class="error-message name-error"></div>
+        </div>
+
+        <div class="author-container container">
+          <label for="book-author">
+            Author of the book:
+          </label>
+          <input type="text" id="book-author" required>
+          <div class="error-message author-error"></div>
+        </div>
+
+        <div class="description-container container">
+          <label for="book-description">
+            Description of the book:
+          </label>
+          <textarea required name="book-description" id="book-description" cols="30" rows="10"></textarea>
+          <div class="error-message description-error"></div>
+        </div>
       </fieldset>
 
       <fieldset class="additional-info">
         <legend>Additional Information</legend>
-        <label for="book-image">
-          Book image:
-        </label>
-        <button id="add-image-btn">Upload an image</button>
-        <input type="file" name="book-image" accept="image/*" id="book-image" required>
-        <div class="error-message book-image-error"></div>
+
+        <div class="image-uploader-container container">
+          <label for="book-image">
+            Book image:
+          </label>
+          <button id="add-image-btn">Upload an image</button>
+          <input type="file" name="book-image" accept="image/*" id="book-image" required>
+          <div class="error-message book-image-error"></div>
+        </div>
+
         <div class="is-book-read">
           <span>
             Have you read the book?
           </span>
           <input type="radio" name="read" checked value="yes-read" id="read" required>
           <label for="read">Yes</label>
-
           <input type="radio" name="read" value="not-read" id="not-read">
           <label for="not-read">No</label>
         </div>
@@ -63,9 +75,11 @@
           <label for="not-favorite">No</label>
         </div>
 
-        <label for="pages">Number of pages:</label>
-        <input type="number" name="pages" min="1" max="3000" id="pages" required>
-        <div class="error-message book-pages-error"></div>
+        <div class="pages-container container">
+          <label for="pages">Number of pages:</label>
+          <input type="number" name="pages" min="1" max="3000" id="pages" required>
+          <div class="error-message book-pages-error"></div>
+        </div>
       </fieldset>
 
       <button type="submit" class="add-book-btn">Add the book</button>
