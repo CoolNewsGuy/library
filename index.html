@@ -22,14 +22,17 @@
           Name of the book:
         </label>
         <input type="text" id="book-name" required>
+        <div class="error-message name-error"></div>
         <label for="book-author">
           Author of the book:
         </label>
         <input type="text" id="book-author" required>
+        <div class="error-message email-error"></div>
         <label for="book-description">
           Description of the book:
         </label>
         <textarea required name="book-description" id="book-description" cols="30" rows="10"></textarea>
+        <div class="error-message description-error"></div>
       </fieldset>
 
       <fieldset class="additional-info">
@@ -39,12 +42,12 @@
         </label>
         <button id="add-image-btn">Upload an image</button>
         <input type="file" name="book-image" accept="image/*" id="book-image" required>
-
+        <div class="error-message book-image-error"></div>
         <div class="is-book-read">
           <span>
             Have you read the book?
           </span>
-          <input type="radio" name="read" value="yes-read" id="read" required>
+          <input type="radio" name="read" checked value="yes-read" id="read" required>
           <label for="read">Yes</label>
 
           <input type="radio" name="read" value="not-read" id="not-read">
@@ -56,12 +59,13 @@
           <input type="radio" name="favorite" value="yes-favorite" id="favorite" required>
           <label for="favorite">Yes</label>
 
-          <input type="radio" name="favorite" value="not-favorite" id="not-favorite">
+          <input type="radio" name="favorite" checked value="not-favorite" id="not-favorite">
           <label for="not-favorite">No</label>
         </div>
 
         <label for="pages">Number of pages:</label>
         <input type="number" name="pages" min="1" max="3000" id="pages" required>
+        <div class="error-message book-pages-error"></div>
       </fieldset>
 
       <button type="submit" class="add-book-btn">Add the book</button>
