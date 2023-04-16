@@ -16,21 +16,33 @@ class CustomValidator {
         return document.querySelectorAll("input:not([type='radio']), textarea");
     }
 
-    static checkIfInputIsEmpty(e) {
-        let errorElement = document.querySelector(
-            `#${e.target.id} + .error-message`
-        );
-        let input = e.target;
+    static checkIfInputIsEmpty(e, allFields = CustomValidator.formInputs) {
+        if (e) {
+            let errorElement = document.querySelector(
+                `#${e.target.id} + .error-message`
+            );
+            let input = e.target;
 
-        if (input.validity.valueMissing) {
-            errorElement.textContent = input.validationMessage;
+            if (input.validity.valueMissing) {
+                errorElement.textContent = input.validationMessage;
 
-            input.classList.add("invalid");
-        } else {
-            errorElement.textContent = "";
+                input.classList.add("invalid");
+            } else {
+                errorElement.textContent = "";
 
-            input.classList.remove("invalid");
-        }
+                input.classList.remove("invalid");
+            }
+        } else
+            allFields.forEach((field) => {
+                if (field.value === "") {
+                    let fieldErrorElement = document.querySelector(
+                        `#${field.id} + .error-message`
+                    );
+
+                    field.classList.add("invalid");
+                    fieldErrorElement.textContent = field.validationMessage;
+                }
+            });
     }
 
     static checkIfImageUploaded() {
@@ -63,5 +75,6 @@ CustomValidator.formInputs.forEach((input) => {
 
 CustomValidator.form.addEventListener("submit", (e) => {
     CustomValidator.checkIfImageUploaded();
+    CustomValidator.checkIfInputIsEmpty();
     CustomValidator.preventInvalidFormSubmission(e);
 });
