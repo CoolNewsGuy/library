@@ -60,6 +60,17 @@ class CustomValidator {
         }
     }
 
+    static hideFormErrorsAfterSuccessfulSubmission() {
+        CustomValidator.formInputs.forEach((input) => {
+            let inputErrorElement = document.querySelector(
+                `#${input.id} + .error-message`
+            );
+
+            input.classList.remove("invalid");
+            inputErrorElement.textContent = "";
+        });
+    }
+
     static preventInvalidFormSubmission(e) {
         if (!CustomValidator.form.checkValidity()) {
             e.preventDefault();
